@@ -521,5 +521,11 @@
 			<string>zq492l623r.skadnetwork</string>
 		</dict>
 	</array>
+	<key>OneSignal_app_groups_key</key>
+	<string>group.app.bloompluck.care.onesignal</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 </dict>
 </plist>

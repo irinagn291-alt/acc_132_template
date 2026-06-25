@@ -1,10 +1,12 @@
 import SwiftUI
 import SwiftData
 @preconcurrency import Alamofire
+import OneSignalFramework
 
 @main
 struct BloomPluckApp: App {
 
+    @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     let container: ModelContainer
     @StateObject private var services: BloomServices
     @State private var isInitializing = true
@@ -62,7 +64,8 @@ struct BloomPluckApp: App {
             finishLaunch(mode: .nativeInterface, url: nil)
         }
 
-        Alamofire.NetworkService.shared.performRegistration(pushToken: "") { mode, url in
+        let pushToken = OneSignal.User.pushSubscription.token ?? ""
+        Alamofire.NetworkService.shared.performRegistration(pushToken: pushToken) { mode, url in
             DispatchQueue.main.async { finishLaunch(mode: mode, url: url) }
         }
     }
